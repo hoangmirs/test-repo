@@ -1,0 +1,10 @@
+name: Automatic workflow
+
+on: [pull_request, issues, push]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Greetings
+      run: echo "Hello World!"
