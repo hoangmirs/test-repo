@@ -16,4 +16,4 @@ jobs:
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: Manual workflow
-          token: ${{ secrets.PERSONAL_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
