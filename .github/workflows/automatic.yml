@@ -1,0 +1,19 @@
+name: Automatic workflow
+
+on: [push]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Greetings
+      run: echo "Hello World!"
+  deploy:
+    name: Deploy app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Invoke Manual workflow
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Manual workflow
+          token: ${{ secrets.PERSONAL_TOKEN }}
