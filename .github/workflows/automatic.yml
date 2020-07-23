@@ -7,7 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Greetings
-      run: echo "Hello World!"
+      run: |
+        echo "Hello World!"
+        echo "Hello REF: $GITHUB_REF"
+        echo "Hello HEAD_REF: $GITHUB_HEAD_REF"
       
   deploy:
     name: Invoke deployment
