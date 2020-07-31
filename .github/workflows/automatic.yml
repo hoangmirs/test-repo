@@ -13,7 +13,8 @@ jobs:
         echo "Hello HEAD_REF: $GITHUB_HEAD_REF"
     - name: Set HEROKU_APP
       run: |
-        echo "::set-env name=BRANCH_TAG::master"
+        export BRANCH_TAG=master
+        echo "::set-env name=BRANCH_TAG_AA::$BRANCH_TAG"
 
         if [[ $BRANCH_TAG = "master" ]]
         then
