@@ -15,10 +15,8 @@ on:
         default: 'World'
         # Input has to be provided for the workflow to run
         required: true
-      heroku_api_key:
-        description: 'Heroku API key'
-        default: ${{ secrets.TEST_KEY }}
-        required: true
+      versions:
+        description: 'Versions'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -34,3 +32,7 @@ jobs:
       run: |
         echo "Hello ${{ github.event.inputs.name }}"
         echo "From ${{ github.ref }}"
+    - uses: actions/delete-package-versions@v1
+      with:
+        package-version-ids: ${{ github.event.inputs.versions }}
+        token: ${{ secrets.GITHUB_PAT }}
