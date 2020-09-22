@@ -32,7 +32,3 @@ jobs:
       run: |
         echo "Hello ${{ github.event.inputs.name }}"
         echo "From ${{ github.ref }}"
-    - uses: actions/delete-package-versions@v1
-      with:
-        package-version-ids: ${{ github.event.inputs.versions }}
-        token: ${{ secrets.PERSONAL_TOKEN }}
