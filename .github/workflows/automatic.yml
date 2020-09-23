@@ -1,13 +1,30 @@
 name: Automatic workflow
 
-on: push
+on: [push, pull_request]
 
 jobs:
   greeting:
     runs-on: ubuntu-latest
     steps:
     - name: Greetings
-      run: echo "Hello World!"
+      run: |
+        echo "Hello World!"
+        echo "Hello REF: $GITHUB_REF"
+        echo "Hello HEAD_REF: $GITHUB_HEAD_REF"
+    - name: Set HEROKU_APP
+      run: |
+        export BRANCH_TAG=master
+        echo "::set-env name=BRANCH_TAG_AA::$BRANCH_TAG"
+
+        if [[ $BRANCH_TAG = "master" ]]
+        then
+          echo "::set-env name=HEROKU_APP::nimble-survey-web"
+        else
+          echo "::set-env name=HEROKU_APP::nimble-survey-web-staging"
+        fi
+    - name: echo HEROKU_APP
+      run: |
+        echo $HEROKU_APP
       
   deploy:
     name: Invoke deployment
