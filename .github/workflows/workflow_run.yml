@@ -30,7 +30,5 @@ jobs:
           echo ${{ github.ref }}
           echo "WORKFLOW_RUN:"
           echo ${{ github.event.workflow_run }}
-          echo "WORKFLOW_RUN JSON:"
-          echo ${{ toJson(github.event.workflow_run) }}
-          echo "GITHUB"
+          echo "GITHUB:"
           echo ${{ toJson(github) }}
