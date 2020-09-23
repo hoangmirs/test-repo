@@ -28,4 +28,9 @@ jobs:
       - name: Print
         run: |
           echo ${{ github.ref }}
+          echo "WORKFLOW_RUN:"
           echo ${{ github.event.workflow_run }}
+          echo "WORKFLOW_RUN JSON:"
+          echo ${{ toJSON(github.event.workflow_run) }}
+          echo "GITHUB"
+          echo ${{ toJSON(github) }}
