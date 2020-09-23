@@ -11,30 +11,7 @@ jobs:
         echo "Hello World!"
         echo "Hello REF: $GITHUB_REF"
         echo "Hello HEAD_REF: $GITHUB_HEAD_REF"
-    - name: Set HEROKU_APP
-      run: |
-        export BRANCH_TAG=master
-        echo "::set-env name=BRANCH_TAG_AA::$BRANCH_TAG"
-
-        if [[ $BRANCH_TAG = "master" ]]
-        then
-          echo "::set-env name=HEROKU_APP::nimble-survey-web"
-        else
-          echo "::set-env name=HEROKU_APP::nimble-survey-web-staging"
-        fi
-    - name: echo HEROKU_APP
-      run: |
-        echo $HEROKU_APP
-      
-  deploy:
-    name: Invoke deployment
-    runs-on: ubuntu-latest
-    needs: greeting
-    if: contains(github.ref, 'refs/heads/development') || contains(github.ref, 'refs/heads/master')
-    steps:
-      - name: Invoke deployment workflow
-        uses: benc-uk/workflow-dispatch@v1
-        with:
-          workflow: Manual workflow
-          token: ${{ secrets.PERSONAL_TOKEN }}
-          
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
