@@ -4,6 +4,7 @@ on:
   workflow_run:
     workflows:
       - Manual workflow
+      - Automatic workflow
     branches:
       - master
       - development
