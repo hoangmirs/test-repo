@@ -32,3 +32,7 @@ jobs:
       run: |
         echo "Hello ${{ github.event.inputs.name }}"
         echo "From ${{ github.ref }}"
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
